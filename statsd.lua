@@ -48,7 +48,7 @@ end
 
 function _M.inc()
    -- Need to split this into parts for addition to the shared dictionary
-   -- from logDNA : 'GET /arcgis/rest/services/Wisconsin/Wisconsin/MapServer/export'
+   -- 'GET /some/endpoint' turnes into get.some.endpoint:32|c for statsd. 
    local uri = string.lower(ngx.req.get_method()) .. string.gsub(ngx.var.request_uri, "/", ".")
    local v, err = ngx.shared.statsdict:incr(uri, 1, 0)
    if is_empty(v) then
